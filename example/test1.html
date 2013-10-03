@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script src="../lib/GLUT.js"></script>
+        <script>
+            window.onload = function(){
+                var glut = new GLUT("glut_canvas");
+                var gl = glut.gl;
+                glut.onDraw = function(){
+                    gl.clearColor(0,0,0,1.0);
+                    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+                }
+                glut.onIdle = function(){
+                    glut.onDraw();
+                }
+                glut.onResize = function(w,h){
+                    console.log(w,h);
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <!-- GLUT canvas -->
+        <canvas id="glut_canvas" style="position:absolute; top:0px; left:0px"></canvas>        
+        
+        <!-- Enable Fullscreen button -->
+        <input type="button"
+               value="Fullscreen (Chrome or Firefox)"
+               style="position:relative;z-index: 2;"
+               onclick='
+                if( document.body.webkitRequestFullScreen ) {
+                    document.body.style.width = window.screen.width + "px";
+                    document.body.style.height = window.screen.height + "px";
+                    document.body.webkitRequestFullScreen();
+                }
+                if( document.body.mozRequestFullScreen ) {
+                    document.body.mozRequestFullScreen();
+                }
+                ' 
+        />
+    </body>
+</html>
